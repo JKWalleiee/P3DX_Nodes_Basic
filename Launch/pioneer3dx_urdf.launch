@@ -1,0 +1,21 @@
+<launch>
+	<include file="$(find p2os_urdf)/launch/upload_pioneer3dx.xml"/>
+
+  	<node pkg="robot_state_publisher" type="state_publisher" name="robot_state_publisher">
+
+    	<param name="publish_frequency" type="double" value="30.0"/>
+
+    	<param name="tf_prefix" type="string" value=""/>
+  	</node>
+	
+	<node pkg="rosaria" type="RosAria" name="RosAria"/>
+	<!-- param name="port" type="string" value="/dev/ttyS0"/> </node> -->
+<!-- Run a static transform between /odom and /map -->
+
+	<node pkg="tf" type="static_transform_publisher" name="base_sonar_transform" args="0 0 0 0 0 0 /base_link /sonar_frame 100" />
+	<node pkg="tf" type="static_transform_publisher" name="base_laser_transform" args="0 0 0 0 0 0 /base_link /laser 100" />
+	
+
+	
+	
+</launch>
